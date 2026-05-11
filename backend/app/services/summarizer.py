@@ -105,7 +105,7 @@ Respond in a natural, conversational tone."""
 
     def __init__(self):
         """Initialize the Anthropic client."""
-        self.client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+        self.client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)
         self.model = settings.claude_model
     
     async def summarize_email(
@@ -141,14 +141,14 @@ Respond in a natural, conversational tone."""
         )
         
         try:
-            response = self.client.messages.create(
+            response = await self.client.messages.create(
                 model=self.model,
                 max_tokens=1024,
                 messages=[
                     {"role": "user", "content": prompt}
                 ]
             )
-            
+
             # Parse response
             content = response.content[0].text
             result = json.loads(content)
@@ -237,14 +237,14 @@ Email {i}:
         )
         
         try:
-            response = self.client.messages.create(
+            response = await self.client.messages.create(
                 model=self.model,
                 max_tokens=1024,
                 messages=[
                     {"role": "user", "content": prompt}
                 ]
             )
-            
+
             content = response.content[0].text
             return json.loads(content)
             
@@ -301,12 +301,12 @@ Email {i}:
         messages.append({"role": "user", "content": prompt})
         
         try:
-            response = self.client.messages.create(
+            response = await self.client.messages.create(
                 model=self.model,
                 max_tokens=1024,
                 messages=messages
             )
-            
+
             return response.content[0].text
             
         except Exception as e:

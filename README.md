@@ -43,7 +43,7 @@ Before you begin, you'll need:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/email-guardian.git
+git clone https://github.com/Lkhanaajav/email-guardian.git
 cd email-guardian
 ```
 

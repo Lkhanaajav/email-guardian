@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     
     # Anthropic Claude API
     anthropic_api_key: str = ""
-    claude_model: str = "claude-sonnet-4-5-20250929"
+    claude_model: str = "claude-haiku-4-5-20251001"
     
     # Database
     database_url: str = "sqlite+aiosqlite:///./email_guardian.db"
