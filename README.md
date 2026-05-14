@@ -1,5 +1,7 @@
 # EmailGuardian
 
+![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python) ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green?logo=fastapi) ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react) ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker) ![License](https://img.shields.io/badge/License-MIT-yellow)
+
 An intelligent email monitoring and summarization application powered by AI. EmailGuardian connects to your Gmail account, automatically fetches and categorizes emails, generates AI-powered summaries, and helps you stay on top of your inbox with minimal effort.
 
 ## Features
@@ -13,6 +15,23 @@ An intelligent email monitoring and summarization application powered by AI. Ema
 - **Natural Language Chat**: Ask questions about your inbox in plain English
 - **Analytics Dashboard**: Visual insights into your email patterns
 - **Background Sync**: Automatic email fetching every 15 minutes
+
+## Architecture
+
+```
+Gmail API ──► Email Fetcher ──► SQLite/PostgreSQL
+                                      │
+                                 Summarizer (Claude API)
+                                      │
+                           ┌──────────┴──────────┐
+                      Classifier            Scheduler
+                    (6 categories)      (15-min sync)
+                           │
+                    FastAPI Backend
+                           │
+                    React Frontend
+                    (Dashboard / Chat / Analytics)
+```
 
 ## Tech Stack
 
